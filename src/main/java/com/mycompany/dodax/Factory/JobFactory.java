@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author dam
+ * Factory class for creating jobs
  */
 public class JobFactory {
     // returns an Object of JobAdd with its arrayList containing numbers that add up to 45 
@@ -27,11 +27,7 @@ public class JobFactory {
             list.add(j);
         return list;	
     }
-     
-     ///////////////////////////////////////////////////////////////
-     // HELPER METHODS
-     //////////////////////////////////////////////////////////////
-     
+    
      // return an arraylist, whose members add up to 45 when added together
      // 1+2+3+...+9 = 45
      public static ArrayList<Integer> getArrayList45(){
