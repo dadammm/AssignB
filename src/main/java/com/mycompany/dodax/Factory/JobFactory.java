@@ -6,6 +6,7 @@
 package com.mycompany.dodax.Factory;
 
 import com.mycompany.dodax.model.impl.JobAdd;
+import com.mycompany.dodax.model.impl.JobDivide;
 import java.util.ArrayList;
 
 /**
@@ -55,4 +56,28 @@ public class JobFactory {
         list.add(0);
         return list;
      }
+     
+     //returns a JobDivide Object; its execute method would be dividing by zero
+     // this method is used to create problematic jobs
+     public static JobDivide getJobDivideByZero(){
+         return new JobDivide(JobFactory.getArrayListDivByZero());
+     }
+     
+     // returns an ArrayList of integers containing the integers: 64, 8, 4 , 2
+     // 64/8/4/2 = 1
+     public static ArrayList<Integer> getArrayListDivide2(){
+        ArrayList<Integer> list = new ArrayList<Integer>();
+        list.add(64);
+        list.add(8);
+        list.add(4);
+        list.add(2);
+        return list;
+     }
+     
+     // creates an obJect of JobDivide which has a valid execution (no division by zero)
+     public static JobDivide getJobDivide2(){
+         return new JobDivide(getArrayListDivide2());
+     }
+     //////////////////////////////////////////////////////////////
+     //////////////////////////////////////////////////////////////
 }
