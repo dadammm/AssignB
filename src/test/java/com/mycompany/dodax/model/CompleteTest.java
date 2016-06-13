@@ -1,5 +1,6 @@
 package com.mycompany.dodax.model;
 
+import com.mycompany.dodax.Factory.JobFactory;
 import com.mycompany.dodax.core.impl.JobManager;
 import com.mycompany.dodax.core.impl.JobsRunnable;
 import com.mycompany.dodax.model.impl.JobAdd;
@@ -36,16 +37,16 @@ public class CompleteTest {
     assertEquals(5,a.getResult());
     
     }
-    
+    //
     // Testing if the methods of the JobAdd class work correctly
     @Test
     public void testJobAdd() {
         JobAdd a = new JobAdd();
-        a.setNumbersToAdd(getArrayList45());
+        a.setNumbersToAdd(JobFactory.getArrayList45());
         a.execute();
         assertEquals(45,a.getSum());
         
-        a.setNumbersToAdd(getArrayList145());
+        a.setNumbersToAdd(JobFactory.getArrayList145());
         a.execute();
         assertEquals(145,a.getSum());
     }
@@ -55,7 +56,7 @@ public class CompleteTest {
     public void testJobsRunnable(){
         JobsRunnable t = new JobsRunnable();
         ArrayList<IJob> listOfJobs = new ArrayList<IJob>();
-        JobAdd jobAdd = getJobAdd45();
+        JobAdd jobAdd = JobFactory.getJobAdd45();
         listOfJobs.add(jobAdd);
         listOfJobs.add(jobAdd);
         
@@ -71,9 +72,9 @@ public class CompleteTest {
         t.removeAllJobs();
         assertEquals(0, t.getListOfJobs().size());
         
-        jobAdd = getJobAdd45();
+        jobAdd = JobFactory.getJobAdd45();
         t.addJob(jobAdd);////
-        t.addJob(getJobAdd145());
+        t.addJob(JobFactory.getJobAdd145());
         t.addJob(getJobDivideByZero());
         t.addJob(getJobDivide2());///
         t.addJob(jobAdd);///
@@ -97,7 +98,7 @@ public class CompleteTest {
         ArrayList<IJob> listOfJobs = new ArrayList<IJob>();
         // add 8 JobAdds to the list of jobs which should be executed
         for (int i=0;i<8;++i)
-            listOfJobs.add(getJobAdd45());
+            listOfJobs.add(JobFactory.getJobAdd45());
         
         // Using two threads to execute 8 jobs... so each thread should be doing 4 jobs
         JobManager manager = new JobManager(2,listOfJobs);
@@ -141,7 +142,7 @@ public class CompleteTest {
         ArrayList<IJob> listOfJobs = new ArrayList<IJob>();
         // add 8 JobAdds to the list of jobs which should be executed
         for (int i=0;i<8;++i)
-            listOfJobs.add(getJobAdd45());
+            listOfJobs.add(JobFactory.getJobAdd45());
         // Add two jobs which will throw an exception (division by zero)
         listOfJobs.add(getJobDivideByZero());
         listOfJobs.add(getJobDivideByZero());
@@ -199,7 +200,7 @@ public class CompleteTest {
         listOfJobs.add(getJobDivideByZero());
         // then add 8 add jobs which run fine on their own
         for (int i=0;i<8;++i)
-            listOfJobs.add(getJobAdd45());
+            listOfJobs.add(JobFactory.getJobAdd45());
         
         JobManager manager = new JobManager(2,listOfJobs);
         assertEquals(10,listOfJobs.size());
@@ -248,7 +249,7 @@ public class CompleteTest {
         ArrayList<IJob> listOfJobs = new ArrayList<IJob>();
         // add 9 jobs to the list of jobs to be executed
         for (int i=0;i<9;++i)
-            listOfJobs.add(getJobAdd45());
+            listOfJobs.add(JobFactory.getJobAdd45());
         
         JobManager manager = new JobManager(2,listOfJobs);
         manager.assignJobsToThreads();
@@ -288,7 +289,7 @@ public class CompleteTest {
      public void testExecute5() {
         ArrayList<IJob> listOfJobs = new ArrayList<IJob>();
         for (int i=0;i<9;++i)
-            listOfJobs.add(getJobAdd45());
+            listOfJobs.add(JobFactory.getJobAdd45());
         
         JobManager manager = new JobManager(4,listOfJobs);
         manager.assignJobsToThreads();
@@ -334,7 +335,7 @@ public class CompleteTest {
      public void testExecute5b() {
         ArrayList<IJob> listOfJobs = new ArrayList<IJob>();
         for (int i=0;i<11;++i)
-            listOfJobs.add(getJobAdd45());
+            listOfJobs.add(JobFactory.getJobAdd45());
         
         JobManager manager = new JobManager(4,listOfJobs);
         manager.assignJobsToThreads();
@@ -381,18 +382,18 @@ public class CompleteTest {
      @Test
      public void testExecute6() {
         ArrayList<IJob> listOfJobs = new ArrayList<IJob>();
-        listOfJobs.add(getJobAdd45());
-        listOfJobs.add(getJobAdd145());
-        listOfJobs.add(getJobAdd45());
-        listOfJobs.add(getJobAdd145());
-        listOfJobs.add(getJobAdd45());
-        listOfJobs.add(getJobAdd145());
-        listOfJobs.add(getJobAdd45());
-        listOfJobs.add(getJobAdd145());
-        listOfJobs.add(getJobAdd45());
-        listOfJobs.add(getJobAdd145());
-        listOfJobs.add(getJobAdd45());
-        listOfJobs.add(getJobAdd145());
+        listOfJobs.add(JobFactory.getJobAdd45());
+        listOfJobs.add(JobFactory.getJobAdd145());
+        listOfJobs.add(JobFactory.getJobAdd45());
+        listOfJobs.add(JobFactory.getJobAdd145());
+        listOfJobs.add(JobFactory.getJobAdd45());
+        listOfJobs.add(JobFactory.getJobAdd145());
+        listOfJobs.add(JobFactory.getJobAdd45());
+        listOfJobs.add(JobFactory.getJobAdd145());
+        listOfJobs.add(JobFactory.getJobAdd45());
+        listOfJobs.add(JobFactory.getJobAdd145());
+        listOfJobs.add(JobFactory.getJobAdd45());
+        listOfJobs.add(JobFactory.getJobAdd145());
         
         JobManager manager = new JobManager(3,listOfJobs);
         manager.assignJobsToThreads();
@@ -439,18 +440,18 @@ public class CompleteTest {
      @Test
      public void testExecute7() {
         ArrayList<IJob> listOfJobs = new ArrayList<IJob>();
-        listOfJobs.add(getJobAdd45());
-        listOfJobs.add(getJobAdd145());
-        listOfJobs.add(getJobAdd45());
-        listOfJobs.add(getJobAdd145());
-        listOfJobs.add(getJobAdd45());
-        listOfJobs.add(getJobAdd145());
-        listOfJobs.add(getJobAdd45());
-        listOfJobs.add(getJobAdd145());
-        listOfJobs.add(getJobAdd45());
-        listOfJobs.add(getJobAdd145());
-        listOfJobs.add(getJobAdd45());
-        listOfJobs.add(getJobAdd145());
+        listOfJobs.add(JobFactory.getJobAdd45());
+        listOfJobs.add(JobFactory.getJobAdd145());
+        listOfJobs.add(JobFactory.getJobAdd45());
+        listOfJobs.add(JobFactory.getJobAdd145());
+        listOfJobs.add(JobFactory.getJobAdd45());
+        listOfJobs.add(JobFactory.getJobAdd145());
+        listOfJobs.add(JobFactory.getJobAdd45());
+        listOfJobs.add(JobFactory.getJobAdd145());
+        listOfJobs.add(JobFactory.getJobAdd45());
+        listOfJobs.add(JobFactory.getJobAdd145());
+        listOfJobs.add(JobFactory.getJobAdd45());
+        listOfJobs.add(JobFactory.getJobAdd145());
         listOfJobs.add(getJobDivideByZero()); // problematic job added to first thread
         
         JobManager manager = new JobManager(3,listOfJobs);
@@ -502,22 +503,22 @@ public class CompleteTest {
      @Test
      public void testExecute8() {
         ArrayList<IJob> listOfJobs = new ArrayList<IJob>();
-        listOfJobs.add(getJobAdd45());
-        listOfJobs.add(getJobAdd145());
-        listOfJobs.add(getJobAdd45());
-        listOfJobs.add(getJobAdd145());
+        listOfJobs.add(JobFactory.getJobAdd45());
+        listOfJobs.add(JobFactory.getJobAdd145());
+        listOfJobs.add(JobFactory.getJobAdd45());
+        listOfJobs.add(JobFactory.getJobAdd145());
         
-        listOfJobs.add(getJobAdd45());
-        listOfJobs.add(getJobAdd145());
+        listOfJobs.add(JobFactory.getJobAdd45());
+        listOfJobs.add(JobFactory.getJobAdd145());
         listOfJobs.add(getJobDivideByZero());
-        listOfJobs.add(getJobAdd45());
+        listOfJobs.add(JobFactory.getJobAdd45());
         
-        listOfJobs.add(getJobAdd145());
-        listOfJobs.add(getJobAdd45());
-        listOfJobs.add(getJobAdd145());
-        listOfJobs.add(getJobAdd45());
+        listOfJobs.add(JobFactory.getJobAdd145());
+        listOfJobs.add(JobFactory.getJobAdd45());
+        listOfJobs.add(JobFactory.getJobAdd145());
+        listOfJobs.add(JobFactory.getJobAdd45());
         
-        listOfJobs.add(getJobAdd145());
+        listOfJobs.add(JobFactory.getJobAdd145());
         
         JobManager manager = new JobManager(3,listOfJobs);
         manager.assignJobsToThreads();
@@ -567,19 +568,19 @@ public class CompleteTest {
      public void testExecute9() {
         ArrayList<IJob> listOfJobs = new ArrayList<IJob>();
         listOfJobs.add(getJobDivideByZero());
-        listOfJobs.add(getJobAdd45());
-        listOfJobs.add(getJobAdd145());
-        listOfJobs.add(getJobAdd45());
+        listOfJobs.add(JobFactory.getJobAdd45());
+        listOfJobs.add(JobFactory.getJobAdd145());
+        listOfJobs.add(JobFactory.getJobAdd45());
         
-        listOfJobs.add(getJobAdd145());
-        listOfJobs.add(getJobAdd45());
-        listOfJobs.add(getJobAdd145());
-        listOfJobs.add(getJobAdd45());
+        listOfJobs.add(JobFactory.getJobAdd145());
+        listOfJobs.add(JobFactory.getJobAdd45());
+        listOfJobs.add(JobFactory.getJobAdd145());
+        listOfJobs.add(JobFactory.getJobAdd45());
         
-        listOfJobs.add(getJobAdd145());
-        listOfJobs.add(getJobAdd145());
-        listOfJobs.add(getJobAdd45());
-        listOfJobs.add(getJobAdd145());
+        listOfJobs.add(JobFactory.getJobAdd145());
+        listOfJobs.add(JobFactory.getJobAdd145());
+        listOfJobs.add(JobFactory.getJobAdd45());
+        listOfJobs.add(JobFactory.getJobAdd145());
          
         
         JobManager manager = new JobManager(3,listOfJobs);
@@ -622,51 +623,12 @@ public class CompleteTest {
         assertEquals(false,secondRunnable.getRunning());
         assertEquals(false,thirdRunnable.getRunning());
     }
-     ///////////////////////////////////////////////////////////////
-     // HELPER METHODS
-     //////////////////////////////////////////////////////////////
      
-     // return an arraylist, whose members add up to 45 when added together
-     // 1+2+3+...+9 = 45
-     public ArrayList<Integer> getArrayList45(){
-         ArrayList<Integer> list = new ArrayList<Integer>();
-            for (int j=0;j<10;++j)
-                list.add(j);
-         return list;
-     }
-     
-     // returns an Object of JobAdd with its arrayList containing numbers that add up to 45 
-     public JobAdd getJobAdd45(){
-         return new JobAdd(getArrayList45());
-     }
-     
-     // return an arraylist, whose members add up to 45 when added together
-     // 10+11+12+...+19 = 145
-     public static ArrayList<Integer> getArrayList145(){
-	ArrayList<Integer> list = new ArrayList<Integer>();
-	for (int j=10;j<20;++j)
-            list.add(j);
-        return list;	
-    }
-     
-     // returns an Object of JobAdd with its arrayList containing numbers that add up to 145 
-     public JobAdd getJobAdd145(){
-         return new JobAdd(getArrayList145());
-     } 
-    //////////////////////////////////////////////////////////////
-    //////////////////////////////////////////////////////////////
-    //returns an arraylist of integers containing two zeroes. 
-     public ArrayList<Integer> getArrayListDivByZero(){
-        ArrayList<Integer> list = new ArrayList<Integer>();
-        list.add(0);
-        list.add(0);
-        return list;
-     }
      
      //returns a JobDivide Object; its execute method would be dividing by zero
      // this method is used to create problematic jobs
      public JobDivide getJobDivideByZero(){
-         return new JobDivide(getArrayListDivByZero());
+         return new JobDivide(JobFactory.getArrayListDivByZero());
      }
      
      // returns an ArrayList of integers containing the integers: 64, 8, 4 , 2
