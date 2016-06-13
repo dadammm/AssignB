@@ -66,7 +66,7 @@ public class CompleteTest {
         t.removeFirstInstanceOfJob(jobAdd);
         assertEquals(1,t.getListOfJobs().size());
         
-        t.addJob(getJobDivideByZero());
+        t.addJob(JobFactory.getJobDivideByZero());
         assertEquals(2, t.getListOfJobs().size());
         
         t.removeAllJobs();
@@ -75,8 +75,8 @@ public class CompleteTest {
         jobAdd = JobFactory.getJobAdd45();
         t.addJob(jobAdd);////
         t.addJob(JobFactory.getJobAdd145());
-        t.addJob(getJobDivideByZero());
-        t.addJob(getJobDivide2());///
+        t.addJob(JobFactory.getJobDivideByZero());
+        t.addJob(JobFactory.getJobDivide2());///
         t.addJob(jobAdd);///
         assertEquals(5, t.getListOfJobs().size());
         
@@ -144,8 +144,8 @@ public class CompleteTest {
         for (int i=0;i<8;++i)
             listOfJobs.add(JobFactory.getJobAdd45());
         // Add two jobs which will throw an exception (division by zero)
-        listOfJobs.add(getJobDivideByZero());
-        listOfJobs.add(getJobDivideByZero());
+        listOfJobs.add(JobFactory.getJobDivideByZero());
+        listOfJobs.add(JobFactory.getJobDivideByZero());
         
         // using two threads to execute 10 jobs; so each thread should be doing 5 jobs
         // since the divide jobs are done last in the second thread, most of the add jobs should be executed
@@ -196,8 +196,8 @@ public class CompleteTest {
     @Test
     public void testExecute3() {
         ArrayList<IJob> listOfJobs = new ArrayList<IJob>();
-        listOfJobs.add(getJobDivideByZero()); // get a problematic job
-        listOfJobs.add(getJobDivideByZero());
+        listOfJobs.add(JobFactory.getJobDivideByZero()); // get a problematic job
+        listOfJobs.add(JobFactory.getJobDivideByZero());
         // then add 8 add jobs which run fine on their own
         for (int i=0;i<8;++i)
             listOfJobs.add(JobFactory.getJobAdd45());
@@ -452,7 +452,7 @@ public class CompleteTest {
         listOfJobs.add(JobFactory.getJobAdd145());
         listOfJobs.add(JobFactory.getJobAdd45());
         listOfJobs.add(JobFactory.getJobAdd145());
-        listOfJobs.add(getJobDivideByZero()); // problematic job added to first thread
+        listOfJobs.add(JobFactory.getJobDivideByZero()); // problematic job added to first thread
         
         JobManager manager = new JobManager(3,listOfJobs);
         manager.assignJobsToThreads();
@@ -510,7 +510,7 @@ public class CompleteTest {
         
         listOfJobs.add(JobFactory.getJobAdd45());
         listOfJobs.add(JobFactory.getJobAdd145());
-        listOfJobs.add(getJobDivideByZero());
+        listOfJobs.add(JobFactory.getJobDivideByZero());
         listOfJobs.add(JobFactory.getJobAdd45());
         
         listOfJobs.add(JobFactory.getJobAdd145());
@@ -567,7 +567,7 @@ public class CompleteTest {
      @Test
      public void testExecute9() {
         ArrayList<IJob> listOfJobs = new ArrayList<IJob>();
-        listOfJobs.add(getJobDivideByZero());
+        listOfJobs.add(JobFactory.getJobDivideByZero());
         listOfJobs.add(JobFactory.getJobAdd45());
         listOfJobs.add(JobFactory.getJobAdd145());
         listOfJobs.add(JobFactory.getJobAdd45());
@@ -623,30 +623,6 @@ public class CompleteTest {
         assertEquals(false,secondRunnable.getRunning());
         assertEquals(false,thirdRunnable.getRunning());
     }
-     
-     
-     //returns a JobDivide Object; its execute method would be dividing by zero
-     // this method is used to create problematic jobs
-     public JobDivide getJobDivideByZero(){
-         return new JobDivide(JobFactory.getArrayListDivByZero());
-     }
-     
-     // returns an ArrayList of integers containing the integers: 64, 8, 4 , 2
-     // 64/8/4/2 = 1
-     public ArrayList<Integer> getArrayListDivide2(){
-        ArrayList<Integer> list = new ArrayList<Integer>();
-        list.add(64);
-        list.add(8);
-        list.add(4);
-        list.add(2);
-        return list;
-     }
-     
-     // creates an obJect of JobDivide which has a valid execution (no division by zero)
-     public JobDivide getJobDivide2(){
-         return new JobDivide(getArrayListDivide2());
-     }
-     //////////////////////////////////////////////////////////////
-     //////////////////////////////////////////////////////////////
+        
 }
 
